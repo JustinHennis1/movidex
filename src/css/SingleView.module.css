@@ -1,0 +1,107 @@
+
+/* 
+.card {
+    border: 2px solid red;
+    background-color: white; 
+    z-index: 1000; 
+  } 
+*/
+  
+
+.card {
+    position: fixed; /* Position fixed to overlay above other content */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position to be centered */
+    width: 80vw; /* Adjust width as needed */
+    height: 80vh; /* Adjust height as needed */
+    color: white;
+    z-index: 1000; /* High z-index to ensure it appears above other elements */
+    background-color: #000;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+    font-size: calc(10px + 0.2vw);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+    overflow-x: visible;
+  }
+
+  .card::-webkit-scrollbar {
+    width: 12px;  /* Width of the scrollbar */
+}
+
+.card::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, #100 0%, #700 50%, #100 100%);  /* Track color */
+    border-radius: 10px;  /* Rounded corners for the track */
+}
+
+.card::-webkit-scrollbar-thumb {
+    background: rgba(255, 254, 254, 0.7);  /* Thumb color */
+    border-radius: 10px;  /* Rounded corners for the thumb */
+    border: 3px solid rgba(0, 0, 0, 0.8);  /* Border around the thumb */
+}
+
+.card::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 255, 255);  /* Thumb color on hover */
+}
+
+  .cardcontent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .cardtext {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border-top-right-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin-left: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-family: Lora;
+  }
+  
+  .cardclose {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    background: #FFF;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    align-items: center;
+  }
+  
+  .cardclose:hover {
+    background-color: #F00;
+  }
+
+.coolbtn {
+  background:  linear-gradient(to bottom, #100 0%, #700 50%, #100 100%);
+  padding: 10px;
+  border-radius: 10px;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.coolbtn:hover {
+  background:  linear-gradient(to bottom, #100 0%, rgb(145, 83, 2) 50%, #100 100%)0;
+  color: #FFF;
+}

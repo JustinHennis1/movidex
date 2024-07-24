@@ -1,0 +1,20 @@
+/* vertical-carousel.css */
+.vertical-carousel {
+    height: 500px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .vertical-carousel-item {
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .vertical-carousel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  

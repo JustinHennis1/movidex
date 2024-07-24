@@ -1,0 +1,76 @@
+/* dropdown.css */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdownmenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    max-height: 200px;
+    overflow-y: auto ;
+  }
+  
+  .dropdownmenu.show {
+    display: block;
+  }
+  
+  .dropdownitem {
+    display: block;
+    width: 100%;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  
+  .dropdownitem:hover,
+  .dropdownitem:focus {
+    background-color: #f2f2f2;
+  }
+
+  /* dropdown.module.css */
+.cancelButton {
+  background: #a00;
+  color: white;
+}
+
+  
+
+
+  #cancel:hover {
+    color: black;
+    background-color: #FFF;
+  }
+
+  .dropbutton {
+    background-color: rgba(100, 0, 0, 1);
+    margin: 0;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    height:'50px';
+    width:'auto';
+  }

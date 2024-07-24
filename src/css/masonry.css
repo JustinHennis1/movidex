@@ -1,0 +1,21 @@
+/* masonry.css */
+.masonry-grid {
+    display: flex;
+    width: auto;
+  }
+  
+  .masonry-grid_column {
+    background-clip: padding-box;
+  }
+  
+  .masonry-item {
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+  
+  .masonry-item-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  

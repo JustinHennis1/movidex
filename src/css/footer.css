@@ -1,0 +1,42 @@
+.footer {
+    display: flex;
+    height: 30vh;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #000;
+    color: #333;
+  }
+  
+  .logocontainer {
+    background: #333;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  .linkscontainer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .link:hover {
+    color: #600;
+  }
+  
+  .copyright {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #777;
+  }
+  

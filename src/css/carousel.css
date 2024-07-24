@@ -1,0 +1,73 @@
+.carousel-container {
+    margin: auto; /* Center horizontally */
+    width: 100%; /* Adjust the width as needed */
+    height: auto; /* Adjust the height as needed */
+    border-radius: 10px;
+  }
+
+/* Override the default dot styles */
+.slick-dots li button:before {
+  font-size: 12px;
+  color: white; /* Change dot color to white */
+}
+
+/* Change the color of the active dot */
+.slick-dots li.slick-active button:before {
+  color: white; /* Ensure the active dot is also white */
+}
+
+
+  .image-wrapper{
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center vertically */
+    padding: 15px;
+    color: white;
+  }
+  
+  .carousel-item img {
+    width: 100%;
+    max-width: 120px; /* Adjust the maximum width of the image */
+    height: auto;
+  }
+  .boxed {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: transparent;
+  }
+  .boxed:hover {
+    background-color: black;
+  }
+  
+  .carousel-item h3 {
+    margin-top: 10px;
+    font-size: 14px; /* Adjust the font size as needed */
+    text-align: left;
+  }
+
+  .carousel-container button {
+    background-color: transparent;
+  }
+
+  .slick-prev,
+.slick-next {
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
+
+.slick-prev {
+  left: 0px; /* Adjust the left position as needed */
+}
+
+.slick-next {
+  right: 30px; /* Adjust the right position as needed */
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 40px;
+  color: white;
+}

@@ -1,0 +1,15 @@
+.home {
+    background-image: url('../images/aicurtain.jpeg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column;
+}
+
+.sback {
+    background-image: url('../images/curtainheader.png');
+    background-position: center;
+    background-size: cover;
+}

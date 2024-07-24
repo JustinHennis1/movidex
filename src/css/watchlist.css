@@ -1,0 +1,103 @@
+.watchlist-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .movie-item {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: flex-end;
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    z-index: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  }
+  
+  .movie-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2); /* Adjust the transparency */
+    z-index: 1;
+  }
+
+  
+  .movie-content {
+    position: relative;
+    z-index: 2;
+    width: 100%; /* Make sure content takes full width */
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background: rgba(0, 0, 0, 0.9); 
+    border-radius: 10px;
+  }
+  
+  .movie-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.0em;
+    height: auto;
+    width: 100%; /* Ensure h3 fills the width of the parent */
+    text-align: center; /* Center the text if needed */
+  }
+
+
+.icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000; /* Ensure the icon is above the pseudo-element */
+    font-size: 24px; /* Customize the size */
+    display:flex;
+    justify-content:space-between;
+    width:94%;
+  }
+  
+  .movie-content p {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+  }
+  
+  .movie-content span {
+    font-size: 0.9em;
+  }
+  
+  .star-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    margin: 10px 0;
+  }
+  
+  .star-rating .fa-star {
+    margin: 0 2px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .star-rows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .star-row {
+    display: flex;
+    justify-content: center;
+  }

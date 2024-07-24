@@ -1,0 +1,91 @@
+/* SignInCard.module.css */
+
+.title{
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Lora';
+}
+
+.signInContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to top, #ff5f1b, #ffb71b);
+}
+
+.signInCard {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.signInCard h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.signInButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffb71b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.signInButton:hover {
+  background-color: #ff5f1b;
+}
+
+.link {
+  color: #ffb71b ;
+}
+
+.errorMessage {
+  color: #F00;
+}
+
+.resetPasswordButton {
+  width: 30%;
+  padding: 10px;
+  background-color: #FFF;
+  border: 1px solid #ffb71b;
+  color: #111;
+  border-radius: 35px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.resetPasswordButton:hover {
+  color: #ffb71b;
+  border: none;
+  background-color: #111;
+  transition: all 0.5s;
+}

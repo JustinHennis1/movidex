@@ -1,0 +1,464 @@
+
+
+h2 {
+    text-align: center;
+    letter-spacing: 4vw;
+    font-size: 69px;
+    font-family: Lora;
+    color:black;
+    text-shadow: 2px 2px #F00, -2px 2px #F00, -3px -1px #FFF,3px 3px #FFF;
+    
+}
+
+.cardholder {
+    position: relative;
+    width: 90vw;
+    height: calc(400px + 70vw);
+    background: transparent;
+    /*background: linear-gradient(to bottom, #100 0%, #700 50%, #100 100%);
+    */
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 500;
+    transition: height 0.3s ease-in-out;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: auto;
+  }
+
+  .cardholder::-webkit-scrollbar {
+    width: 12px;  /* Width of the scrollbar */
+}
+
+.cardholder::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, #100 0%, #700 50%, #100 100%);  /* Track color */
+    border-radius: 10px;  /* Rounded corners for the track */
+}
+
+.cardholder::-webkit-scrollbar-thumb {
+    background: rgba(255, 254, 254, 0.7);  /* Thumb color */
+    border-radius: 10px;  /* Rounded corners for the thumb */
+    border: 3px solid rgba(0, 0, 0, 0.8);  /* Border around the thumb */
+}
+
+.cardholder::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 255, 255);  /* Thumb color on hover */
+}
+
+  .cardholder-header {
+    display: flex;
+   /* justify-content: space-evenly;*/
+    padding: 20px;
+    background-color: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    
+  }
+
+  .cardholder-header button{
+    background-color: rgba(100, 0, 0, 1);
+    margin: 5px;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .card button{
+    background-color: rgba(100, 0, 0, 1);
+    margin: 0;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .card button:hover{
+    background-color: rgba(0, 0, 0, 1);
+    transform:background-color 1s ease;
+  }
+
+  .row {
+    padding-top: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .card {
+    position: relative;
+    max-width: 90%;
+    height: 17vh;
+    color: white;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    z-index: 500;
+    transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
+    overflow: hidden;
+    font-size: calc(10px + 0.2vw);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .cardunderlay {
+    position: relative;
+    max-width: 90%;
+    height: 17vh;
+    color: white;
+    border-radius: 10px;
+    background-color: #100;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    z-index: 400;
+    transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
+    overflow: hidden; 
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    overflow-wrap: break-word;
+  }
+
+
+  .card-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .cardbtn {
+    cursor: pointer;
+  }
+
+  .card-text {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border-top-right-radius: 10px;
+    background-color: rgb(0, 0, 0, 0.7);
+    margin-left: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-family: Lora;
+  }
+
+  .card:hover{
+    padding: 10px;
+    height: auto;
+    transition: padding 0.3s ease-in-out;
+  }
+
+  .card:hover #poster {
+    padding-bottom: 0;
+    transition: padding-bottom 0.3s ease-in-out;
+  }
+
+  .card.enlarge #poster {
+    padding-bottom: 0;
+    transition: padding-bottom 0.3s ease-in-out;
+  }
+
+  .card.enlarge {
+    padding: 10px;
+    height: auto;
+    background-position: center;
+    transition: all 0.9s ease-in-out;
+  }
+
+
+  .dropdownb-menu {
+    display: none;
+    position: absolute;
+    top: 77px;
+    left: 0;
+    background-color: #222;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 600;
+  }
+  
+  .dropdown-menub.show {
+    display: block;
+  }
+  
+  .dropdown-itemb {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .dropdown-itemb:hover {
+    background-color: #111;
+  }
+
+
+  .col {
+    float: left;
+    width: 50%;
+    padding: 0;
+  }
+ 
+  #poster img{
+    margin-top: 0;
+    height: 250px;
+    width: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  }
+
+  @media (width <= 667px) {
+    #poster {
+      display: none;
+    }
+
+    .card:hover{
+      height: auto;
+      background-color: rgba(100, 0, 0, 0.85);
+      transition: padding 0.3s ease-in-out;
+    }
+
+    
+  }
+
+  @media (width <= 344px) {
+    h2 {
+      font-size: 22px;
+    }
+  }
+
+  .popup {
+    position: relative;
+    height: 100vh;
+    z-index: 998;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .popup h1{
+    color: rgb(255, 252, 252);
+    background: #400;
+  }
+
+  .popup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  
+  .popup-card {
+    
+      position: relative;
+      max-width: 90%;
+      height: 17vh;
+      color: white;
+      background-color: rgba(100, 0, 0, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+      z-index: 500;
+      transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
+      overflow: hidden;
+      font-size: calc(10px + 0.2vw);
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+      cursor: pointer;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    
+  }
+
+  .popup-card:hover{
+    padding: 10px;
+    height: auto;
+    background-color: rgba(100, 0, 0, 0.85);
+    transition: padding 0.3s ease-in-out;
+  }
+
+  .popholder{
+
+    position: relative;
+    width: 100%;
+    height: auto;
+    background: linear-gradient(to bottom, #100 0%, #700 50%, #100 100%);
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 500;
+    transition: height 0.3s ease-in-out;
+    box-shadow: #700 0px 5px, #300 0px -5px;
+    margin: auto;
+  }
+
+.popup::-webkit-scrollbar {
+    width: 12px;  /* Width of the scrollbar */
+}
+
+.popup::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, #100 0%, #700 50%, #100 100%);  /* Track color */
+    border-radius: 10px;  /* Rounded corners for the track */
+}
+
+.popup::-webkit-scrollbar-thumb {
+    background: rgba(255, 254, 254, 0.7);  /* Thumb color */
+    border-radius: 10px;  /* Rounded corners for the thumb */
+    border: 3px solid rgba(0, 0, 0, 0.8);  /* Border around the thumb */
+}
+
+.popup::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 255, 255);  /* Thumb color on hover */
+}
+
+  .searchbar {
+    box-shadow: .5px .5px whitesmoke;
+    min-width: auto;
+    max-width: 290px;
+    height: auto;
+    width: 40vw;
+    margin: 5px;
+    padding: 0px;
+    color: white;
+    background-color: rgba(100, 0, 0, 1);
+    overflow: hidden;
+    border-radius: 30px;
+  }
+
+  .cl1 {
+    align-items: 'center'; 
+    text-align:'center';
+    max-width: '65px';
+  }
+
+  .cl0 {
+    align-items: 'center'; 
+    text-align:'center';
+    width: 50%;
+   
+  }
+
+
+
+  @font-face {
+    font-family: 'showtime';
+    src: url('../../public/fonts/ReachTheEnd.ttf');
+}
+
+h1 {
+  position: relative;
+  padding: 5vh;
+  text-align: center;
+  font-family: 'showtime';
+  background: none; /* Remove background from h1 */
+  border-radius: 20px;
+  color: white; /* Ensures text is visible */
+  overflow: hidden; /* Ensures the pseudo-element doesn't overflow the h1 border */
+}
+
+h1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../images/curtainheader.png');
+  background-position: center;
+  background-size: cover;
+  filter: blur(5px); /* Apply blur to the background image */
+  z-index: -1; /* Place the pseudo-element behind the text */
+  border-radius: 20px; /* Match the border radius of the h1 */
+}
+
+
+h3 {
+  font-size: 36px;
+  font-family: 'Lora';
+}
+
+.movie-video {
+  position: relative;
+  margin: auto;
+  width: 70%;
+  height: 250px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.movie-video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.movie-video:hover {
+  
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.backtotop{
+  border-radius: 90px;
+  margin-right: 10px;
+  height: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-right: 15px;
+  padding-left: 15px;
+  background-color: rgb(5, 5, 5);
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.backtotop:hover{
+  background-color: aliceblue;
+  color: #F00;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spin {
+  animation: none;
+}
+.spin:hover{
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
+}
+
+.rating-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.rating-slider input[type="range"] {
+  width: 150px;
+}
+
+.rating-slider button {
+  padding: 5px 10px;
+  background-color: #700;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
