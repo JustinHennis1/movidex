@@ -3,7 +3,7 @@ dotenv.config();
 
 
 async function getAIResponse(userInput) {
-  const endpoint = 'http://localhost:5000/api/getAIResponse';
+  const endpoint = 'http://localhost:5020/api/getAIResponse';
 
   try {
     const response = await fetch(endpoint, {

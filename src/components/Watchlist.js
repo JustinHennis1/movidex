@@ -56,7 +56,7 @@ const Watchlist = () => {
       body: JSON.stringify(reqbody)
     };
 
-    const url = 'http://localhost:5000/api/addrating';
+    const url = 'http://localhost:5020/api/addrating';
 
     try {
       const response = await fetch(url, options);

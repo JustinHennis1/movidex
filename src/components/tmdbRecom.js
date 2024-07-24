@@ -49,7 +49,7 @@ const TMDB_Recommended = ({movie, onClose}) => {
         };
         //console.log(requestBody);
         try {
-          const response = await fetch('http://localhost:5000/api/recommendations', {
+          const response = await fetch('http://localhost:5020/api/recommendations', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

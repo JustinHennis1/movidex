@@ -17,7 +17,7 @@ function Reviews({ movie, onClose }) {
       };
 
       try {
-        const response = await fetch('http://localhost:5000/api/review', {
+        const response = await fetch('http://localhost:5020/api/review', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

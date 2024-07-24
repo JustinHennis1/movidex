@@ -77,7 +77,7 @@ const SingleView = ({ movie, onClose }) => {
 
   const handleGetImdbId = async (movieId) => {
     try {
-      const url = `http://localhost:5000/api/externalids/${movieId}`;
+      const url = `http://localhost:5020/api/externalids/${movieId}`;
       const response = await fetch(url);
       const data = await response.json();
       const imdbId = data.imdb_id;

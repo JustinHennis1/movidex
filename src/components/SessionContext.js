@@ -10,7 +10,7 @@ const SessionProvider = ({ children }) => {
   useEffect(() => {
     const createGuestSession = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/guest');
+        const res = await fetch('http://localhost:5020/api/guest');
         const data = await res.json();
         setSessionId(data.guest_session_id);
         //console.log('Guest Session ID:', data.guest_session_id);
