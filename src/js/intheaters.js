@@ -4,6 +4,8 @@ dotenv.config();
 const fetch = require('node-fetch');
 
 async function getInTheater(page) {
+  console.log('getInTheater - TMDB_RD_TOKEN:', process.env.TMDB_RD_TOKEN ? 'Is set' : 'Is not set');
+  console.log('getInTheater - TMDB_RD_TOKEN length:', process.env.TMDB_RD_TOKEN ? process.env.TMDB_RD_TOKEN.length : 0);
   let pg = '';
   if(page){pg = `?page=${page}`}
   const rdtok = 'Bearer '+process.env.TMDB_RD_TOKEN;  //TMDB_API_KEY; //
@@ -37,4 +39,3 @@ async function getInTheater(page) {
 //getInTheater();
 
 module.exports = {getInTheater};
-

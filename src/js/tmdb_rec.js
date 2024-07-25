@@ -3,6 +3,9 @@ const fetch = require('node-fetch');
 
 async function getTMDBrecommendations(movieid, lang, page) {
 
+    console.log('getTMDBrecommendations - TMDB_RD_TOKEN:', process.env.TMDB_RD_TOKEN ? 'Is set' : 'Is not set');
+    console.log('getTMDBrecommendations - TMDB_RD_TOKEN length:', process.env.TMDB_RD_TOKEN ? process.env.TMDB_RD_TOKEN.length : 0);
+
     let pg = '';
     let lg = '';
     if(lang){lg = '?language=' + lang}

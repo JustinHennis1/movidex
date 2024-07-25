@@ -1,20 +1,19 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "movieserver.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "package.json",
-        "use": "@vercel/static-build",
-        "config": { 
-          "distDir": "build"
-        }
-      }
-    ],
-    "routes": [
-      { "src": "/api/(.*)", "dest": "movieserver.js" },
-      { "src": "/(.*)", "dest": "build/$1" }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "movieserver.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "movieserver.js" },
+    { "src": "^/static/(.*)", "dest": "/static/$1" },
+    { "src": ".*", "dest": "/index.html" }
+  ]
+}

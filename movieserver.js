@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { AzureOpenAI } = require('openai');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const { getInTheater } = require('./src/js/intheaters');
@@ -26,47 +26,73 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
-const apiKey = process.env.AZURE_OPENAI_API_KEY;
-const authTok = process.env.TMDB_RD_TOKEN;
-const apiVersion = '2024-05-01-preview';
-const deployment = 'gpt-4';
+const apiKey = process.env.GEMINI_API;
+if (!apiKey) {
+  console.error("GEMINI_API is not set in environment variables");
+  process.exit(1);
+}
 
+console.log("API Key (first 5 chars):", apiKey.substring(0, 5));
 
+const genAI = new GoogleGenerativeAI(apiKey);
 
-const client = new AzureOpenAI({ endpoint, apiKey, apiVersion, deployment, dangerouslyAllowBrowser: false });
-
+// Modify the conversation history
 let conversationHistory = [
-  { role: 'system', content: "I'm here to help you find your next movie." },
-  { role: 'user', content: "Never use quotations unless you are referencing a movie. Any movie title you give must be wrapped in double quotes and must have a brief description next to it." },
-  { role: 'user', content: "If I ask a question about a movie answer it. Based on my next message give me 3 to 5 movie recommendations that match my interests." },
-  { role: 'system', content: "Welcome, here is a list of movies I highly recommend..." },
+  {
+    role: 'user',
+    parts: [{ text: "You are an AI assistant to help find movies. Never use quotations unless you are referencing a movie. Any movie title you give must be wrapped in double quotes and must have a brief description next to it. If I ask a question about a movie, answer it. Based on my next message, give me 3 to 5 movie recommendations that match my interests." }]
+  },
+  {
+    role: 'model',
+    parts: [{ text: "Understood. I'm here to help you find your next movie. I'll provide movie recommendations based on your interests, ensuring that movie titles are in double quotes with brief descriptions. I'm ready to answer any movie-related questions you might have. What kind of movies are you interested in?" }]
+  }
 ];
 
-
 app.post('/api/getAIResponse', async (req, res) => {
+  if (!apiKey) {
+    return res.status(500).json({ error: 'API key is not set' });
+  }
+
   const { userInput } = req.body;
-  //console.log("Received user input:", userInput);
 
   // Add the new user input to the conversation history
-  conversationHistory.push({ role: 'user', content: userInput });
+  conversationHistory.push({
+    role: 'user',
+    parts: [{ text: userInput }]
+  });
 
   try {
-    const result = await client.chat.completions.create({
-      messages: conversationHistory,
-      model: 'gpt-4',
+    // Initialize a chat model
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+    // Start a chat session
+    const chat = model.startChat({
+      history: conversationHistory,
+      generationConfig: {
+        maxOutputTokens: 1000,
+      },
     });
 
-    const aiResponse = result.choices[0].message.content;
-    //console.log("AI Response:", aiResponse);
+    // Generate a response
+    const result = await chat.sendMessage(userInput);
+    const aiResponse = result.response.text();
 
     // Add the AI response to the conversation history
-    conversationHistory.push({ role: 'assistant', content: aiResponse });
+    conversationHistory.push({
+      role: 'model',
+      parts: [{ text: aiResponse }]
+    });
 
+    console.log("AI Response:", aiResponse);
     res.json({ content: aiResponse });
   } catch (error) {
-    console.error("Error in fetching AI response:", error);
-    res.status(500).send('Error in fetching AI response');
+    console.error("Detailed error in fetching AI response:", error);
+    console.error("Error stack:", error.stack);
+    res.status(500).json({ 
+      error: 'Error in fetching AI response', 
+      details: error.message,
+      stack: error.stack 
+    });
   }
 });
 

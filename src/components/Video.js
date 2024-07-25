@@ -14,7 +14,7 @@ const MovieVideo = ({ movie }) => {
       }
 
       try {
-        const response = await fetch(`http://localhost:5020/api/youtube/${movie.id}`);
+        const response = await fetch(`/api/youtube/${movie.id}`);
         const data = await response.json();
 
         // Filter out the unwanted trailer

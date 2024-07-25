@@ -68,7 +68,7 @@ function MovieCardList({setOpen}) {
 
   const handleGetImdbId = async (movieId) => {
     try {
-      const url = `http://localhost:5020/api/externalids/${movieId}`;
+      const url = `/api/externalids/${movieId}`;
       const response = await fetch(url);
       const data = await response.json();
       const imdbId = data.imdb_id;
@@ -121,7 +121,7 @@ function MovieCardList({setOpen}) {
       body: JSON.stringify(reqbody)
     };
   
-    const url = 'http://localhost:5020/api/addrating';
+    const url = '/api/addrating';
   
     try {
       const response = await fetch(url, options);
@@ -198,7 +198,7 @@ function MovieCardList({setOpen}) {
   useEffect(() => {
     async function fetchTheaterMovies(page) {
       try {
-        const response = await fetch(`http://localhost:5020/api/inTheaters?page=${page}`);
+        const response = await fetch(`/api/inTheaters?page=${page}`);
         const data = await response.json();
         setTheaterMovies(data.results || []);
         setTheaterMax(data.total_pages || 1);
@@ -212,7 +212,7 @@ function MovieCardList({setOpen}) {
   useEffect(() => {
     async function fetchTopRatedMovies(page) {
       try {
-        const response = await fetch(`http://localhost:5020/api/topRated?page=${page}`);
+        const response = await fetch(`/api/topRated?page=${page}`);
         //console.log(response);
         const data = await response.json();
         setTopRatedMovies(data.results || []);
@@ -227,7 +227,7 @@ function MovieCardList({setOpen}) {
   useEffect(() => {
     async function fetchPopularMovies(page) {
       try {
-        const response = await fetch(`http://localhost:5020/api/popular?page=${page}`);
+        const response = await fetch(`/api/popular?page=${page}`);
         const data = await response.json();
         setPopularMovies(data.results || []);
         setPopularMax(data.total_pages || 1);
@@ -241,7 +241,7 @@ function MovieCardList({setOpen}) {
   useEffect(() => {
     async function fetchUpcomingMovies(page) {
       try {
-        const response = await fetch(`http://localhost:5020/api/upcoming?page=${page}`);
+        const response = await fetch(`/api/upcoming?page=${page}`);
         const data = await response.json();
         setUpcomingMovies(data.results || []);
         setUpcomingMax(data.total_pages || 1);

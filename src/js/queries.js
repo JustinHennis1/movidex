@@ -3,8 +3,8 @@ dotenv.config();
 
 
 async function getAIResponse(userInput) {
-  const endpoint = 'http://localhost:5020/api/getAIResponse';
-
+  const endpoint = '/api/getAIResponse';
+  console.log("Sending user input:", userInput);
   try {
     const response = await fetch(endpoint, {
       method: 'POST',
@@ -13,16 +13,18 @@ async function getAIResponse(userInput) {
       },
       body: JSON.stringify({ userInput }),
     });
-
+    
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await response.json();
+      console.error("Server error details:", errorData);
+      throw new Error(`HTTP error! status: ${response.status}, details: ${JSON.stringify(errorData)}`);
     }
-
+    
     const data = await response.json();
-    console.log("AI Response:", data.content);
+    console.log("Received AI response:", data);
     return data.content;
   } catch (error) {
-    console.error("Error in fetching AI response:", error);
+    console.error('Detailed error in fetching AI response:', error);
     throw error;
   }
 }

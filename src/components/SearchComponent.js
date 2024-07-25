@@ -65,7 +65,7 @@ const SearchComponent = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:5020/api/searchmov', {
+      const response = await fetch('/api/searchmov', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
