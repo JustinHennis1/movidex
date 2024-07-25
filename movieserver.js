@@ -79,10 +79,6 @@ app.post('/api/getAIResponse', async (req, res) => {
           category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
           threshold: "BLOCK_MEDIUM_AND_ABOVE",
         },
-        {
-          category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-          threshold: "BLOCK_MEDIUM_AND_ABOVE",
-        },
       ],
     });
 
@@ -152,10 +148,11 @@ app.get('/api/inTheaters', async (req, res) => {
   const page = req.query.page || 1;
   try {
     const movies = await getInTheater(page);
+    //console.log('Checking Output of In Theaters: ', movies);
     res.json(movies);
   } catch (error) {
     console.error('Error fetching in-theater movies:', error);
-    res.status(500).json({ error: 'Failed to fetch movies that are now playing', details: error.message });
+    res.status(500).json({ error: 'Failed to fetch movies that are now playing' });
   }
 });
 
@@ -166,7 +163,7 @@ app.get('/api/topRated', async (req, res) => {
     res.json(movies);
   } catch (error) {
     console.error('Error fetching top-rated movies:', error);
-    res.status(500).json({ error: 'Failed to fetch top-rated movies', details: error.message });
+    res.status(500).json({ error: 'Failed to fetch top-rated movies' });
   }
 });
 
@@ -178,7 +175,7 @@ app.get('/api/popular', async (req, res) => {
     res.json(movies);
   } catch (error) {
     console.error('Error fetching popular movies:', error);
-    res.status(500).json({ error: 'Failed to fetch popular movies', details: error.message });
+    res.status(500).json({ error: 'Failed to fetch popular movies' });
   }
 });
 
@@ -189,7 +186,7 @@ app.get('/api/upcoming', async (req, res) => {
     res.json(movies);
   } catch (error) {
     console.error('Error fetching upcoming movies:', error);
-    res.status(500).json({ error: 'Failed to fetch upcoming movies', details: error.message });
+    res.status(500).json({ error: 'Failed to fetch upcoming movies' });
   }
 });
 
@@ -200,7 +197,7 @@ app.post('/api/searchmov', async (req, res) => {
     res.json(movies);
   } catch (error) {
     console.error('Error fetching searched movies', error);
-    res.status(500).json({ error: 'Failed to fetch searched movies', details: error.message });
+    res.status(500).json({ error: 'Failed to fetch searched movies' });
   }
 });
 // MOVIE FILTERS END
@@ -212,7 +209,7 @@ app.post('/api/review', async (req, res) => {
     res.json(reviews);
   } catch (e) {
     console.error('Error retrieving reviews', e);
-    res.status(500).json({ error: 'Failed to retrieve reviews', details: e.message });
+    res.status(500).json({ error: 'Failed to retrieve reviews' });
   }
 });
 
@@ -223,7 +220,7 @@ app.post('/api/recommendations', async (req, res) => {
     res.json(recs);
   } catch (e) {
     console.error('Error retrieving reviews', e);
-    res.status(500).json({ error: 'Failed to retrieve recommendations', details: e.message });
+    res.status(500).json({ error: 'Failed to retrieve recommendations' });
   }
 });
 
@@ -243,7 +240,7 @@ app.delete('/api/deleterating', async (req, res) => {
     res.json(rating_res);
   } catch (e) {
     console.error('Error deleting rating', e);
-    res.status(500).json({ error: 'Failed to remove user rating', details: e.message });
+    res.status(500).json({ error: 'Failed to remove user rating' });
   }
 });
 
@@ -269,7 +266,7 @@ app.get('/api/youtube/:id', async (req, res) => {
     res.json(videosResponse);
   } catch (error) {
     console.error('Error fetching videos:', error);
-    res.status(500).json({ error: 'Failed to fetch videos', details: error.message });
+    res.status(500).json({ error: 'Failed to fetch videos' });
   }
 });
 
