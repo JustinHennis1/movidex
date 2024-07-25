@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
+import { HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
 const dotenv = require('dotenv');
 const cors = require('cors');
 const { getInTheater } = require('./src/js/intheaters');
@@ -53,8 +54,19 @@ app.post('/api/getAIResponse', async (req, res) => {
   });
 
   try {
+
+    const safetySetting = [
+      {
+        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+        threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+        threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+      },
+    ];
     // Initialize a chat model
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-pro", safetySettings: safetySetting });
 
     // Start a chat session
     const chat = model.startChat({
@@ -62,24 +74,7 @@ app.post('/api/getAIResponse', async (req, res) => {
       generationConfig: {
         maxOutputTokens: 1000,
       },
-      safetySettings: [
-        {
-          category: "HARM_CATEGORY_DANGEROUS",
-          threshold: "BLOCK_MEDIUM_AND_ABOVE",
-        },
-        {
-          category: "HARM_CATEGORY_HARASSMENT",
-          threshold: "BLOCK_MEDIUM_AND_ABOVE",
-        },
-        {
-          category: "HARM_CATEGORY_HATE_SPEECH",
-          threshold: "BLOCK_MEDIUM_AND_ABOVE",
-        },
-        {
-          category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-          threshold: "BLOCK_MEDIUM_AND_ABOVE",
-        },
-      ],
+      
     });
 
     // Generate a response
