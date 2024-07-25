@@ -74,7 +74,7 @@ app.post('/api/getAIResponse', async (req, res) => {
 app.get('/api/createSession', async (req,res) => {
   try {
     generateRToken().then(fudge => {
-      const url = `https://www.themoviedb.org/authenticate/${fudge.request_token}?redirect_to=http://localhost:3000/approve?request_token=${fudge.request_token}`
+      const url = `https://www.themoviedb.org/authenticate/${fudge.request_token}?redirect_to=/approve?request_token=${fudge.request_token}`
       res.redirect(url);
     }).catch(e => {
       console.error('Failed to generate request token:', e);

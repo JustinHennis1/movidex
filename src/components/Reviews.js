@@ -41,7 +41,7 @@ function Reviews({ movie, onClose }) {
     <div >
       <div className="review-content">
         <div style={{color:'black'}}>
-          {reviews == [] && <p>No reviews yet</p>}
+          {reviews.length === 0 && <p>No reviews yet</p>}
           {reviews.map(review => (
             <li key={review.id} className="review-item">
             <div className="review-header">

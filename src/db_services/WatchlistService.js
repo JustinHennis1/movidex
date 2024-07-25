@@ -1,4 +1,4 @@
-import { doc, setDoc, updateDoc, arrayUnion, getDoc } from 'firebase/firestore';
+import { doc, setDoc, updateDoc, getDoc } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 
 // Add a movie to the user's watchlist

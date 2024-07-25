@@ -10,7 +10,7 @@ import { faArrowUp, faCheckDouble, faCircleNodes, faPlus, faStar, faX } from '@f
 import { removeMovieFromWatchlist, addMovieToWatchlist, fetchUserWatchlist } from '../db_services/WatchlistService.js';
 import { addMovieToRated,  fetchUserRatedMovies } from '../db_services/RatedMovies.js';
 import Reviews from './Reviews.js';
-import TMDB_Recommended from './tmdbRecom.js';
+import TMDBRecommended from './TMDBRecommended.js';
 
 
 function MovieCardList({setOpen}) {
@@ -474,7 +474,7 @@ const getButtonsToDisplay = () => {
 
                        
                   </div>
-                     {somethingSimilar[movie.id] && <TMDB_Recommended movie={movie} onClose={() => toggleSomethingSimilar(movie.id)} />}
+                     {somethingSimilar[movie.id] && <TMDBRecommended movie={movie} onClose={() => toggleSomethingSimilar(movie.id)} />}
 
                   
                   

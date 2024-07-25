@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MovieCarousel from './MovieCarousel';
 import CustomDropdown from './Dropdown';
 import SingleView from './SingleView';
 
-const TMDB_Recommended = ({movie, onClose}) => {
+const TMDBRecommended = ({movie, onClose}) => {
     const [movies, setmovies] = useState([]);
     const [language, setLanguage] = useState('en-US');
     const [recPage, setRecPage] = useState(1);
@@ -40,7 +40,7 @@ const TMDB_Recommended = ({movie, onClose}) => {
         setSelectedMovie(movie);
       };
 
-    async function queryRecommendations() {
+    const queryRecommendations = useCallback(async () => {
         let page = recPage ? `${recPage}`: '1';
         const requestBody = {
           id: movie.id,
@@ -49,7 +49,7 @@ const TMDB_Recommended = ({movie, onClose}) => {
         };
         //console.log(requestBody);
         try {
-          const response = await fetch('http://localhost:5020/api/recommendations', {
+          const response = await fetch('/api/recommendations', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -67,11 +67,11 @@ const TMDB_Recommended = ({movie, onClose}) => {
         } catch (error) {
           console.error('Error fetching recommendations:', error);
         }
-      }
+      }, [movie.id, language, recPage]);
 
-    useEffect(() => {
+      useEffect(() => {
         queryRecommendations();
-      }, [movie.id]);
+      }, [movie.id, queryRecommendations]);
 
     const nextPageRec = () => setRecPage(prevPage => (prevPage + 1 <= recMax ? prevPage + 1 : prevPage));
     const prevPageRec= () => setRecPage(prevPage => (prevPage > 1 ? prevPage - 1 : 1));
@@ -101,4 +101,4 @@ const TMDB_Recommended = ({movie, onClose}) => {
     );
 }
 
-export default TMDB_Recommended;
+export default TMDBRecommended;
