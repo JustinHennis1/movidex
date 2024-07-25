@@ -27,32 +27,23 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const apiKey = process.env.GEMINI_API;
-if (!apiKey) {
-  console.error("GEMINI_API is not set in environment variables");
-  process.exit(1);
-}
 
-console.log("API Key (first 5 chars):", apiKey.substring(0, 5));
-
+// Initialize the Google Generative AI client
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // Modify the conversation history
 let conversationHistory = [
   {
     role: 'user',
-    parts: [{ text: "You are an AI assistant to help find movies. Never use quotations unless you are referencing a movie. Any movie title you give must be wrapped in double quotes and must have a brief description next to it. If I ask a question about a movie, answer it. Based on my next message, give me 3 to 5 movie recommendations that match my interests." }]
+    parts: [{ text: "You are a movie recommendation assistant. Provide family-friendly movie suggestions based on genres or themes. Always give movie titles in double quotes followed by a brief, appropriate description." }]
   },
   {
     role: 'model',
-    parts: [{ text: "Understood. I'm here to help you find your next movie. I'll provide movie recommendations based on your interests, ensuring that movie titles are in double quotes with brief descriptions. I'm ready to answer any movie-related questions you might have. What kind of movies are you interested in?" }]
+    parts: [{ text: "Understood. I'm here to provide family-friendly movie recommendations. I'll ensure all suggestions are appropriate and will format movie titles in double quotes with brief descriptions. How can I help you find a movie today?" }]
   }
 ];
 
 app.post('/api/getAIResponse', async (req, res) => {
-  if (!apiKey) {
-    return res.status(500).json({ error: 'API key is not set' });
-  }
-
   const { userInput } = req.body;
 
   // Add the new user input to the conversation history
@@ -71,6 +62,28 @@ app.post('/api/getAIResponse', async (req, res) => {
       generationConfig: {
         maxOutputTokens: 1000,
       },
+      safetySettings: [
+        {
+          category: "HARM_CATEGORY_DANGEROUS",
+          threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
+        {
+          category: "HARM_CATEGORY_HARASSMENT",
+          threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
+        {
+          category: "HARM_CATEGORY_HATE_SPEECH",
+          threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
+        {
+          category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+          threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
+        {
+          category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+          threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
+      ],
     });
 
     // Generate a response
@@ -83,16 +96,10 @@ app.post('/api/getAIResponse', async (req, res) => {
       parts: [{ text: aiResponse }]
     });
 
-    console.log("AI Response:", aiResponse);
     res.json({ content: aiResponse });
   } catch (error) {
-    console.error("Detailed error in fetching AI response:", error);
-    console.error("Error stack:", error.stack);
-    res.status(500).json({ 
-      error: 'Error in fetching AI response', 
-      details: error.message,
-      stack: error.stack 
-    });
+    console.error("Error in fetching AI response:", error);
+    res.status(500).json({ error: 'Error in fetching AI response', details: error.message });
   }
 });
 
@@ -145,11 +152,10 @@ app.get('/api/inTheaters', async (req, res) => {
   const page = req.query.page || 1;
   try {
     const movies = await getInTheater(page);
-    //console.log('Checking Output of In Theaters: ', movies);
     res.json(movies);
   } catch (error) {
     console.error('Error fetching in-theater movies:', error);
-    res.status(500).json({ error: 'Failed to fetch movies that are now playing' });
+    res.status(500).json({ error: 'Failed to fetch movies that are now playing', details: error.message });
   }
 });
 
@@ -160,7 +166,7 @@ app.get('/api/topRated', async (req, res) => {
     res.json(movies);
   } catch (error) {
     console.error('Error fetching top-rated movies:', error);
-    res.status(500).json({ error: 'Failed to fetch top-rated movies' });
+    res.status(500).json({ error: 'Failed to fetch top-rated movies', details: error.message });
   }
 });
 
@@ -172,7 +178,7 @@ app.get('/api/popular', async (req, res) => {
     res.json(movies);
   } catch (error) {
     console.error('Error fetching popular movies:', error);
-    res.status(500).json({ error: 'Failed to fetch popular movies' });
+    res.status(500).json({ error: 'Failed to fetch popular movies', details: error.message });
   }
 });
 
@@ -183,7 +189,7 @@ app.get('/api/upcoming', async (req, res) => {
     res.json(movies);
   } catch (error) {
     console.error('Error fetching upcoming movies:', error);
-    res.status(500).json({ error: 'Failed to fetch upcoming movies' });
+    res.status(500).json({ error: 'Failed to fetch upcoming movies', details: error.message });
   }
 });
 
@@ -194,7 +200,7 @@ app.post('/api/searchmov', async (req, res) => {
     res.json(movies);
   } catch (error) {
     console.error('Error fetching searched movies', error);
-    res.status(500).json({ error: 'Failed to fetch searched movies' });
+    res.status(500).json({ error: 'Failed to fetch searched movies', details: error.message });
   }
 });
 // MOVIE FILTERS END
@@ -206,7 +212,7 @@ app.post('/api/review', async (req, res) => {
     res.json(reviews);
   } catch (e) {
     console.error('Error retrieving reviews', e);
-    res.status(500).json({ error: 'Failed to retrieve reviews' });
+    res.status(500).json({ error: 'Failed to retrieve reviews', details: e.message });
   }
 });
 
@@ -217,7 +223,7 @@ app.post('/api/recommendations', async (req, res) => {
     res.json(recs);
   } catch (e) {
     console.error('Error retrieving reviews', e);
-    res.status(500).json({ error: 'Failed to retrieve recommendations' });
+    res.status(500).json({ error: 'Failed to retrieve recommendations', details: e.message });
   }
 });
 
@@ -237,7 +243,7 @@ app.delete('/api/deleterating', async (req, res) => {
     res.json(rating_res);
   } catch (e) {
     console.error('Error deleting rating', e);
-    res.status(500).json({ error: 'Failed to remove user rating' });
+    res.status(500).json({ error: 'Failed to remove user rating', details: e.message });
   }
 });
 
@@ -263,7 +269,7 @@ app.get('/api/youtube/:id', async (req, res) => {
     res.json(videosResponse);
   } catch (error) {
     console.error('Error fetching videos:', error);
-    res.status(500).json({ error: 'Failed to fetch videos' });
+    res.status(500).json({ error: 'Failed to fetch videos', details: error.message });
   }
 });
 
