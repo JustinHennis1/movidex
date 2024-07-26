@@ -1,14 +1,12 @@
 # Movidex
 
-![Movidex Logo](placeholder_logo.png)
+![Movidex Logo](src/images/movidex.png)
 
 Movidex is your ultimate movie companion, designed to streamline your search for the perfect film and enhance your movie-watching experience.
 
 ## Inspiration
 
 Movidex was born out of the frustration of endless scrolling through streaming platforms like Netflix, Prime Video, and Max. We aimed to create a solution that simplifies the process of finding your next favorite movie.
-
-![Inspiration Image](placeholder_inspiration.png)
 
 ## Features
 
@@ -18,7 +16,7 @@ Movidex was born out of the frustration of endless scrolling through streaming p
 - **Personalized Watchlist**: Maintain a personalized watchlist for future viewing.
 - **Rating System**: Keep track of the movies you've watched with a personal rating system.
 
-![Feature Showcase](placeholder_features.png)
+![Feature Showcase](src/images/features.png)
 
 ## Technology Stack
 
@@ -28,7 +26,7 @@ Movidex was born out of the frustration of endless scrolling through streaming p
 - **API**: TMDB (The Movie Database)
 - **AI Integration**: ChatGPT 4 (OpenAI)
 
-![Tech Stack](placeholder_tech_stack.png)
+![Tech Stack](src/images/techstack.png)
 
 ## Challenges Faced
 
@@ -40,8 +38,6 @@ Movidex was born out of the frustration of endless scrolling through streaming p
 - Created a fully functional web application with user authentication and personalized features.
 - Successfully integrated ChatGPT 4 to provide intelligent movie recommendations and answer user queries.
 - Implemented efficient data storage and retrieval systems using Firebase.
-
-![Achievements](placeholder_achievements.png)
 
 ## Lessons Learned
 
@@ -56,15 +52,17 @@ Movidex was born out of the frustration of endless scrolling through streaming p
 - Develop mobile applications for iOS and Android.
 - Integrate with more streaming platforms for direct viewing options.
 
-![Future Plans](placeholder_future_plans.png)
+## Before Starting
+- Install Nodejs on your device
 
 ## Getting Started
+For a quick preview visit https://movidex.justinhennis.com
 
-(Include instructions on how to set up and run the project locally)
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for more details.
+To build the project locally:
+1. Clone the repository
+2. At the root folder(movidex) run the following commands:
+ `npm start` and `node ./movieserver.js` 
+3. Enjoy :)
 
 ## License
 
@@ -72,4 +70,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-Created with ❤️ by [Your Name/Team Name]
+Created with ❤️ by Justin Hennis

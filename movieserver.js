@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-import { HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
+const { HarmBlockThreshold, HarmCategory } = require("@google/generative-ai");
 const dotenv = require('dotenv');
 const cors = require('cors');
 const { getInTheater } = require('./src/js/intheaters');

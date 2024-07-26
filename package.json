@@ -66,5 +66,6 @@
     "jest-fetch-mock": "^3.0.3",
     "jest-transform-stub": "^2.0.0",
     "react-app-rewired": "^2.2.1"
-  }
+  },
+  "proxy": "http://localhost:5020"
 }
