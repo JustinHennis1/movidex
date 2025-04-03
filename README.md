@@ -60,9 +60,10 @@ For a quick preview visit https://movidex.justinhennis.com
 
 To build the project locally:
 1. Clone the repository
-2. At the root folder(movidex) run the following commands:
+2. Set environment variables for TMDB_RD_TOKEN and GEMINI_API
+3. At the root folder(movidex) run the following commands:
  `npm start` and `node ./movieserver.js` 
-3. Enjoy :)
+4. Enjoy :)
 
 ## License
 

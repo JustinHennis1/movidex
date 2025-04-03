@@ -2,10 +2,13 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const fetch = require('node-fetch');
+let CHECK_API_FLAG = 0
 
 async function getInTheater(page) {
-  console.log('getInTheater - TMDB_RD_TOKEN:', process.env.TMDB_RD_TOKEN ? 'Is set' : 'Is not set');
-  console.log('getInTheater - TMDB_RD_TOKEN length:', process.env.TMDB_RD_TOKEN ? process.env.TMDB_RD_TOKEN.length : 0);
+  if(CHECK_API_FLAG == 0){
+    console.log('getInTheater - TMDB_RD_TOKEN:', process.env.TMDB_RD_TOKEN ? 'Is set' : 'Is not set');
+    CHECK_API_FLAG = 1;
+  }
   let pg = '';
   if(page){pg = `?page=${page}`}
   const rdtok = 'Bearer '+process.env.TMDB_RD_TOKEN;  //TMDB_API_KEY; //

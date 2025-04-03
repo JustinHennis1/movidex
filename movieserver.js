@@ -66,7 +66,7 @@ app.post('/api/getAIResponse', async (req, res) => {
       },
     ];
     // Initialize a chat model
-    const model = genAI.getGenerativeModel({ model: "gemini-pro", safetySettings: safetySetting });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro-exp-03-25", safetySettings: safetySetting });
 
     // Start a chat session
     const chat = model.startChat({
